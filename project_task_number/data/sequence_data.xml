@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <!-- Sequence for project.task -->
+        <record id="seq_project_task" model="ir.sequence">
+            <field name="name">Project Task Sequence</field>
+            <field name="code">project.task.number</field>
+        </record>
+    
+    </data>
+    
+</odoo>

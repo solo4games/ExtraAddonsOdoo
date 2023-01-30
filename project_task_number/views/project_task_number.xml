@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_task_number_view" model="ir.ui.view">
+        <field name="name">project.task.number.tree</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="task_number"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_task_number_search_view" model="ir.ui.view">
+        <field name="name">project.task.number.search</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="task_number"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="replace">
+                <field name="name" filter_domain="['|', ('name', 'ilike', self), ('task_number', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_task_number_form_view" model="ir.ui.view">
+        <field name="name">project.task.number.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h1/field[@name='priority']" position="after">
+                <span attrs="{'invisible': [('task_number', '=', -1)]}">[</span>
+                <field name="task_number" attrs="{'invisible': [('task_number', '=', -1)]}"/>
+                <span attrs="{'invisible': [('task_number', '=', -1)]}">]</span>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_task_number_kanban_view" model="ir.ui.view">
+        <field name="name">project.task.number.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <span>[</span>
+                <field name="task_number"/>
+                <span>]</span>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

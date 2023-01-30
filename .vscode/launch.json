@@ -1,0 +1,69 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Odoo 14",
+            "type": "python",
+            "request": "launch",
+            "program": "E:/OdooShit/odeo/14.0/odoo/odoo-bin",
+            "args": [
+                "--config=${env:HOME}/odoo/14.0/conf/odoo-local-tower.conf",
+            ],
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Odoo 14 Tower",
+            "type": "python",
+            "request": "launch",
+            "program": "E:/OdooShit/odeo/14.0/odoo/odoo-bin",
+            "args": [
+                "--config=${env:HOME}/odoo/14.0/conf/odoo-local-tower.conf",
+                "--database=14_cetmix_tower_new",
+                "--update=cetmix_tower_server",
+            ],
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Odoo 14 Tower with tests",
+            "type": "python",
+            "request": "launch",
+            "program": "${env:HOME}/odoo/14.0/src/odoo/odoo-bin",
+            "args": [
+                "--config=${env:HOME}/odoo/14.0/conf/odoo-local-tower.conf",
+                "--database=14_cetmix_tower_test",
+                "--init=cetmix_tower_server",
+                "--test-enable",
+                "--stop-after-init",
+            ],
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Docker Debug",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: tower",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "E:/OdooShit/odeo",
+                        "remoteRoot": "/home/odoo/odoo"
+                    }
+                ],
+            },
+        },{
+            "name": "Docker Tests",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: tower tests",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "E:/OdooShit/odeo",
+                        "remoteRoot": "/home/odoo/odoo"
+                    }
+                ],
+            },
+        }
+    ]
+}
